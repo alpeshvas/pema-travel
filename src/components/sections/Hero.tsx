@@ -38,38 +38,51 @@ const slides = [
     src: "/hero/bhutan-landscape.jpg",
     alt: "Bhutan mountain landscape from a guided trek",
   },
+  {
+    src: "/hero/fujidra.jpg",
+    alt: "Scenic Bhutan landscape from a guided tour",
+  },
+  {
+    src: "/hero/doddey-dre.jpg",
+    alt: "Bhutan countryside and mountain vista",
+  },
 ];
 
 const SLIDE_DURATION = 6000;
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
+  const [progressKey, setProgressKey] = useState(0);
   const [loaded, setLoaded] = useState<Set<number>>(new Set([0]));
   const flagsRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval>>();
 
   const goTo = useCallback((index: number) => {
     setCurrent(index);
+    setProgressKey((k) => k + 1);
     // Reset the auto-advance timer
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
+      setProgressKey((k) => k + 1);
     }, SLIDE_DURATION);
   }, []);
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
+      setProgressKey((k) => k + 1);
     }, SLIDE_DURATION);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, []);
 
-  // Preload next image
+  // Preload next two images
   useEffect(() => {
     const next = (current + 1) % slides.length;
-    setLoaded((prev) => new Set(prev).add(next));
+    const next2 = (current + 2) % slides.length;
+    setLoaded((prev) => new Set(prev).add(next).add(next2));
   }, [current]);
 
   useEffect(() => {
@@ -163,29 +176,36 @@ export default function Hero() {
         </Link>
       </div>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 flex gap-2.5 opacity-0 animate-fade-up" style={{ animationDelay: "1.7s" }}>
+      {/* Slide progress indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3 opacity-0 animate-fade-up" style={{ animationDelay: "1.7s" }}>
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`h-[3px] rounded-full transition-all duration-500 ${
-              current === i
-                ? "w-8 bg-gold"
-                : "w-3 bg-cream/40 hover:bg-cream/60"
-            }`}
-          />
+            className="group relative h-5 flex items-center"
+          >
+            {/* Track */}
+            <div className={`h-[2px] rounded-full transition-all duration-300 ${
+              current === i ? "w-10 bg-cream/20" : "w-5 bg-cream/15 hover:bg-cream/30"
+            }`}>
+              {/* Fill — animates over SLIDE_DURATION for the active slide */}
+              {current === i && (
+                <div
+                  key={progressKey}
+                  className="h-full rounded-full bg-gold"
+                  style={{
+                    animation: `progressFill ${SLIDE_DURATION}ms linear forwards`,
+                  }}
+                />
+              )}
+              {/* Past slides show full fill */}
+              {i < current && (
+                <div className="h-full w-full rounded-full bg-cream/40" />
+              )}
+            </div>
+          </button>
         ))}
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-gold-light font-heading text-xs tracking-[3px] uppercase opacity-0 animate-fade-up"
-        style={{ animationDelay: "1.7s" }}
-      >
-        <span>Explore</span>
-        <div className="w-[1px] h-8 bg-gradient-to-b from-gold to-transparent animate-scroll-pulse" />
       </div>
     </section>
   );
