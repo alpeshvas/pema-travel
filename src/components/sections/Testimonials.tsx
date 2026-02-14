@@ -19,7 +19,7 @@ export default function Testimonials() {
       </RevealOnScroll>
 
       <RevealOnScroll>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-6xl mx-auto mt-12">
+        <div className="flex justify-center max-w-2xl mx-auto mt-12">
           {testimonials.map((t) => (
             <div
               key={t.name}
