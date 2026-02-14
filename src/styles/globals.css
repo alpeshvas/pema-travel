@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Philosopher:wght@400;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body bg-warm-white text-brown overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Bhutanese border pattern */
+  .bhutan-border {
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      #8B1A1A 0px, #8B1A1A 20px,
+      #D4A843 20px, #D4A843 24px,
+      #A02020 24px, #A02020 44px,
+      #E89B3A 44px, #E89B3A 48px
+    );
+  }
+
+  .bhutan-border-thin {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      #8B1A1A 0px, #8B1A1A 12px,
+      #D4A843 12px, #D4A843 16px,
+      #A02020 16px, #A02020 28px,
+      #D4A843 28px, #D4A843 32px
+    );
+  }
+
+  .section-label {
+    @apply font-heading text-crimson text-sm tracking-[4px] uppercase mb-3;
+  }
+
+  .section-title {
+    @apply font-display text-dark leading-tight mb-5;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+  }
+
+  .section-desc {
+    @apply max-w-xl text-brown/70 leading-relaxed text-lg;
+  }
+}
+
+@layer utilities {
+  .text-shadow-hero {
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+}
