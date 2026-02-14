@@ -1,10 +1,10 @@
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 const items = [
-  { icon: "📋", title: "Sustainable Development Fee", text: "All international visitors pay a daily Sustainable Development Fee (SDF) of USD $100 per person per day, which supports Bhutan's free healthcare, education, and environmental conservation." },
-  { icon: "✈️", title: "Getting There", text: "Paro International Airport is Bhutan's sole international airport, with flights from Delhi, Bangkok, Kathmandu, and other regional cities. The landing through the Himalayan mountains is unforgettable." },
-  { icon: "🗓️", title: "Best Time to Visit", text: "Spring (March–May) brings rhododendron blooms and clear skies. Autumn (September–November) offers golden landscapes and major festivals. Both seasons have ideal trekking weather." },
-  { icon: "🧳", title: "What to Pack", text: "Layers are essential — Bhutan's altitude means cool mornings and warm afternoons. Bring comfortable walking shoes, modest clothing for temple visits, and a good camera for those unforgettable views." },
+  { icon: "📋", title: "Sustainable Development Fee", text: "International visitors pay a daily SDF of USD $100 per person per day, supporting Bhutan's free healthcare, education, and conservation. Regional visitors from India, Bangladesh, and the Maldives pay a reduced fee of \u20B91,200 per day." },
+  { icon: "✈️", title: "Getting There", text: "Fly into Paro International Airport with Drukair or Bhutan Airlines from Delhi, Bangkok, Kathmandu, Singapore, and other regional cities — the Himalayan approach is unforgettable. Indian citizens can also enter by road through Phuentsholing, Gelephu, or Samdrup Jongkhar." },
+  { icon: "🗓️", title: "Best Time to Visit", text: "Spring (March\u2013May) brings rhododendron blooms and clear mountain views. Autumn (September\u2013November) offers golden landscapes and major Tshechu festivals. Winter (December\u2013February) is quieter with fewer visitors and pleasant lower valley temperatures." },
+  { icon: "🧳", title: "What to Pack", text: "Layers are essential \u2014 Bhutan's altitude means cool mornings and warm afternoons. Bring sturdy walking shoes for monastery hikes, modest clothing covering knees and shoulders for temple visits, and rain gear if visiting during monsoon months." },
 ];
 
 export default function PracticalInfo() {

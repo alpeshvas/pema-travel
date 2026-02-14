@@ -2,11 +2,11 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 const experiences = [
   { icon: "🎭", title: "Festival Celebrations", text: "Witness the vibrant Tshechu festivals where masked dancers perform sacred dances, accompanied by the deep resonance of horns and drums echoing through ancient courtyards." },
-  { icon: "🏔️", title: "Himalayan Treks", text: "Trek through pristine forests of blue pine and rhododendron, from the legendary Snowman Trek to gentle walks through terraced rice paddies and alpine meadows." },
+  { icon: "🏔️", title: "Himalayan Treks", text: "Trek through pristine forests of blue pine and rhododendron, from the legendary Snowman Trek \u2014 one of the world\u2019s most challenging \u2014 to gentle day hikes through terraced rice paddies and alpine meadows with views of 7,000m peaks." },
   { icon: "🧘", title: "Meditation Retreats", text: "Find stillness in remote monasteries where monks have meditated for centuries. Learn mindfulness practices rooted in Vajrayana Buddhist traditions." },
-  { icon: "♨️", title: "Hot Stone Baths", text: "Immerse yourself in a traditional Bhutanese hot stone bath — river stones heated over fire and placed in herb-infused water, a centuries-old healing ritual." },
+  { icon: "♨️", title: "Hot Stone Baths", text: "Unwind in a traditional Dotsho \u2014 river stones are heated over open fire and slid into a wooden tub of herb-infused water. Often enjoyed at the end of a trek, this centuries-old Bhutanese ritual soothes both body and spirit." },
   { icon: "🍲", title: "Culinary Heritage", text: "Savour Ema Datshi — Bhutan's beloved chilli and cheese dish — alongside red rice, momos, and butter tea prepared in farmhouse kitchens with generations-old recipes." },
-  { icon: "🏹", title: "Archery Traditions", text: "Join in Bhutan's beloved national sport. Watch local teams compete with traditional bamboo bows, celebrating each hit with spirited songs and dances." },
+  { icon: "🏹", title: "Archery Traditions", text: "Join in Bhutan\u2019s beloved national sport. Watch local teams compete \u2014 from traditional bamboo bows to modern compound bows \u2014 with each bullseye celebrated through spirited victory songs and dances." },
 ];
 
 export default function Experiences() {

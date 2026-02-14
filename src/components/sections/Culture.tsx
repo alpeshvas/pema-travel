@@ -15,7 +15,7 @@ const cultureItems = [
   {
     icon: "\uD83C\uDFDB\uFE0F",
     title: "Dzong Architecture",
-    text: "Massive fortress-monasteries built without nails, serving as both administrative centres and spiritual sanctuaries for centuries.",
+    text: "Massive fortress-monasteries built without nails or architectural plans, serving as both district administrative centres and monastic sanctuaries \u2014 every dzongkhag in Bhutan is anchored by one.",
   },
 ];
 

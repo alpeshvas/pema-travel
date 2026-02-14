@@ -12,13 +12,13 @@ const destinations = [
   {
     tag: "Valley",
     name: "Punakha Valley",
-    desc: "Where the Mo Chhu and Pho Chhu rivers converge at the majestic Punakha Dzong.",
+    desc: "Where the Mo Chhu and Pho Chhu rivers meet at the stunning Punakha Dzong \u2014 Bhutan\u2019s most beautiful fortress and the winter seat of the monastic body.",
     image: "https://images.unsplash.com/photo-1597658333270-8c0d8f0eb845?w=800&h=600&fit=crop&q=80",
   },
   {
     tag: "Heritage",
     name: "Bumthang Valley",
-    desc: "The spiritual heartland of Bhutan, home to its oldest temples and sacred sites.",
+    desc: "The spiritual heartland of Bhutan, home to the ancient Jambay Lhakhang temple, sacred burning lakes, and centuries-old monasteries set among pine-forested hills.",
     image: "https://images.unsplash.com/photo-1608659377506-3b4fec4f7634?w=800&h=600&fit=crop&q=80",
   },
 ];
