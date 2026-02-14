@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { BhutanBorderThin } from "@/components/ui/BhutanBorder";
 
 export const metadata: Metadata = {
   title: "About Bhutan",
-  description: "Discover the Kingdom of Bhutan — the Last Shangri-La. Learn about its history, culture, and the philosophy of Gross National Happiness.",
+  description: "Discover the Kingdom of Bhutan \u2014 the Last Shangri-La. Learn about its history, culture, and the philosophy of Gross National Happiness.",
 };
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero banner */}
-      <section className="pt-32 pb-20 px-6 md:px-10 bg-gradient-to-br from-dark via-[#1a2a1a] to-dark text-center relative overflow-hidden">
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[300px] text-gold/[0.04] select-none">☸</span>
-        <div className="relative z-10">
+      {/* Hero banner with image */}
+      <section className="pt-32 pb-20 px-6 md:px-10 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1650747858910-5d48a4116296?w=1920&h=600&fit=crop&q=80"
+            alt="Buddhist monk crossing a prayer flag bridge in Bhutan"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-dark/70" />
+        </div>
+        <div className="relative z-10 text-center">
           <p className="font-heading text-gold text-sm tracking-[6px] uppercase mb-4">About</p>
           <h1 className="font-display text-cream leading-tight mb-4" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
             The Kingdom of <em className="text-gold italic">Bhutan</em>
@@ -32,7 +43,7 @@ export default function AboutPage() {
           <RevealOnScroll>
             <h2 className="font-display text-dark text-3xl mb-4">A Brief History</h2>
             <p className="text-brown/70 leading-relaxed text-lg">
-              Known as Druk Yul — the Land of the Thunder Dragon — Bhutan has maintained its sovereignty and distinct cultural identity for over a thousand years. Nestled between the giants of India and China, this small Himalayan kingdom has never been colonised, preserving traditions that stretch back to the 7th century when Buddhism first arrived on its shores.
+              Known as Druk Yul &mdash; the Land of the Thunder Dragon &mdash; Bhutan has maintained its sovereignty and distinct cultural identity for over a thousand years. Nestled between the giants of India and China, this small Himalayan kingdom has never been colonised, preserving traditions that stretch back to the 7th century when Buddhism first arrived on its shores.
             </p>
           </RevealOnScroll>
 
@@ -46,7 +57,7 @@ export default function AboutPage() {
           <RevealOnScroll>
             <h2 className="font-display text-dark text-3xl mb-4">Environmental Stewardship</h2>
             <p className="text-brown/70 leading-relaxed text-lg">
-              Bhutan is the world&apos;s only carbon-negative country. Its constitution mandates that at least 60% of the country remains under forest cover for all time — currently over 72% is forested. From the subtropical plains to alpine glaciers, this biodiversity hotspot is home to snow leopards, black-necked cranes, and the rare blue poppy.
+              Bhutan is the world&apos;s only carbon-negative country. Its constitution mandates that at least 60% of the country remains under forest cover for all time &mdash; currently over 72% is forested. From the subtropical plains to alpine glaciers, this biodiversity hotspot is home to snow leopards, black-necked cranes, and the rare blue poppy.
             </p>
           </RevealOnScroll>
 

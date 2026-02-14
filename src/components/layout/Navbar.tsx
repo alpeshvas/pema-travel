@@ -15,6 +15,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   return (
     <nav
       className={`fixed top-3 left-0 right-0 z-50 px-6 md:px-10 transition-all duration-400 ${
@@ -24,7 +30,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between py-4">
         <Link href="/" className="flex items-center gap-3 text-gold font-heading text-xl tracking-widest">
           <Logo />
-          DRUK YUL
+          PEMA TRAVEL
         </Link>
 
         {/* Desktop nav */}
@@ -43,23 +49,34 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-cream text-2xl"
+          className="lg:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
         >
-          {menuOpen ? "✕" : "☰"}
+          <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
+          <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+          <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
         </button>
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <div className="lg:hidden bg-dark/95 backdrop-blur-md pb-6 px-6">
-          <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-out ${
+          menuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="bg-dark/95 backdrop-blur-md pb-6 px-6">
+          <ul className="flex flex-col gap-1">
+            {navLinks.map((link, i) => (
+              <li
+                key={link.href}
+                className={menuOpen ? "animate-slide-down" : ""}
+                style={{ animationDelay: `${i * 50}ms` }}
+              >
                 <Link
                   href={link.href}
-                  className="text-cream font-heading text-sm tracking-wider uppercase block py-2 border-b border-gold/10"
+                  className="text-cream font-heading text-sm tracking-wider uppercase block py-3 border-b border-gold/10 hover:text-gold transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -68,7 +85,7 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

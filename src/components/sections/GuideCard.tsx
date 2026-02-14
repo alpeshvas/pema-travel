@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { guide } from "@/lib/config";
 
 export default function GuideCard() {
@@ -9,10 +10,11 @@ export default function GuideCard() {
       {/* Header */}
       <div className="flex gap-6 p-7 items-start">
         <div className="relative flex-shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={guide.photo}
             alt={guide.name}
+            width={112}
+            height={112}
             className="w-28 h-28 object-cover object-top border-[3px] border-crimson rounded"
           />
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-forest text-white font-heading text-[0.65rem] tracking-wider uppercase px-2.5 py-0.5 whitespace-nowrap">

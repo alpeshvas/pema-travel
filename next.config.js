@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'services.bhutan.travel',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
 };

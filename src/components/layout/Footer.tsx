@@ -10,7 +10,7 @@ export default function Footer() {
         <div>
           <Link href="/" className="flex items-center gap-3 text-gold font-heading text-xl tracking-widest mb-4">
             <Logo />
-            DRUK YUL
+            PEMA TRAVEL
           </Link>
           <p className="text-cream/50 text-sm leading-relaxed max-w-xs">
             {siteConfig.description}
@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gold/15 flex flex-col md:flex-row justify-between items-center gap-3">
-        <p className="text-cream/30 text-xs">© 2026 Druk Yul Travel. All rights reserved.</p>
+        <p className="text-cream/30 text-xs">© 2026 Pema Travel. All rights reserved.</p>
         <p className="text-gold text-sm italic opacity-50">ༀ་མ་ཎི་པདྨེ་ཧཱུྃ།</p>
       </div>
     </footer>

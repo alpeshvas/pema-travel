@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { BhutanBorderThin } from "@/components/ui/BhutanBorder";
@@ -13,33 +14,33 @@ const tours = [
     title: "Cultural Immersion",
     duration: "7 Days",
     difficulty: "Easy",
-    desc: "Explore Bhutan's living heritage — from the grand dzongs of Thimphu and Punakha to ancient temples, vibrant festivals, and traditional farmhouses.",
+    desc: "Explore Bhutan\u2019s living heritage \u2014 from the grand dzongs of Thimphu and Punakha to ancient temples, vibrant festivals, and traditional farmhouses.",
     highlights: ["Punakha Dzong", "Thimphu Tsechu", "Farmhouse Stay", "Traditional Cooking Class"],
-    gradient: "from-crimson to-[#6a1515]",
+    image: "https://images.unsplash.com/photo-1605904583059-7880dad25595?w=800&h=500&fit=crop&q=80",
   },
   {
-    title: "Tiger's Nest Trek",
+    title: "Tiger\u2019s Nest Trek",
     duration: "5 Days",
     difficulty: "Moderate",
     desc: "A focused journey centred on the iconic hike to Paro Taktsang, with cultural exploration of the Paro Valley and surrounding monasteries.",
-    highlights: ["Tiger's Nest Monastery", "Paro Rinpung Dzong", "National Museum", "Chele La Pass"],
-    gradient: "from-forest to-[#1a3520]",
+    highlights: ["Tiger\u2019s Nest Monastery", "Paro Rinpung Dzong", "National Museum", "Chele La Pass"],
+    image: "https://images.unsplash.com/photo-1553856622-d1b352e9a211?w=800&h=500&fit=crop&q=80",
   },
   {
     title: "Snowman Trek",
     duration: "25 Days",
     difficulty: "Challenging",
-    desc: "One of the world's most difficult and rewarding treks, crossing remote passes above 5,000m through Bhutan's pristine wilderness.",
+    desc: "One of the world\u2019s most difficult and rewarding treks, crossing remote passes above 5,000m through Bhutan\u2019s pristine wilderness.",
     highlights: ["Laya Village", "Lunana Region", "Glacial Lakes", "Alpine Meadows"],
-    gradient: "from-[#4a6a8a] to-[#2a4a6a]",
+    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=500&fit=crop&q=80",
   },
   {
     title: "Bird Watching Expedition",
     duration: "10 Days",
-    difficulty: "Easy–Moderate",
+    difficulty: "Easy\u2013Moderate",
     desc: "Bhutan hosts over 700 bird species. Journey from subtropical forests to alpine heights spotting rare species including the black-necked crane.",
     highlights: ["Phobjikha Valley", "Royal Manas Park", "Thrumshingla Pass", "Black-Necked Cranes"],
-    gradient: "from-[#5a7a3a] to-[#3a5a1a]",
+    image: "https://images.unsplash.com/photo-1597658333270-8c0d8f0eb845?w=800&h=500&fit=crop&q=80",
   },
   {
     title: "Family Adventure",
@@ -47,15 +48,15 @@ const tours = [
     difficulty: "Easy",
     desc: "A family-friendly journey combining gentle hikes, cultural experiences, and hands-on activities perfect for travellers of all ages.",
     highlights: ["Archery Lesson", "Paper Making", "Gentle Nature Walks", "Hot Stone Bath"],
-    gradient: "from-saffron to-[#c07a20]",
+    image: "https://images.unsplash.com/photo-1585904194096-15ef66ccd234?w=800&h=500&fit=crop&q=80",
   },
   {
-    title: "Cycling the Dragon's Trail",
+    title: "Cycling the Dragon\u2019s Trail",
     duration: "12 Days",
     difficulty: "Challenging",
-    desc: "Pedal through Bhutan's dramatic landscapes — from Paro to Bumthang — crossing high passes and descending into lush valleys.",
+    desc: "Pedal through Bhutan\u2019s dramatic landscapes \u2014 from Paro to Bumthang \u2014 crossing high passes and descending into lush valleys.",
     highlights: ["Dochula Pass", "Gangtey Valley", "Trongsa Dzong", "Bumthang Temples"],
-    gradient: "from-[#8a5a3a] to-[#6a3a1a]",
+    image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&h=500&fit=crop&q=80",
   },
 ];
 
@@ -83,18 +84,32 @@ export default function ToursPage() {
           {tours.map((tour) => (
             <RevealOnScroll key={tour.title}>
               <div className="bg-white border border-crimson/[0.08] overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all group">
-                <div className={`h-48 bg-gradient-to-br ${tour.gradient} flex items-center justify-center relative`}>
-                  <h3 className="font-display text-cream text-2xl text-center px-6">{tour.title}</h3>
+                <div className="h-56 relative overflow-hidden">
+                  <Image
+                    src={tour.image}
+                    alt={tour.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
+                  <h3 className="absolute bottom-4 left-6 font-display text-cream text-2xl text-shadow-hero">{tour.title}</h3>
                   <div className="absolute top-4 right-4 flex gap-2">
-                    <span className="px-2.5 py-1 bg-black/20 text-cream text-xs font-heading tracking-wide">{tour.duration}</span>
-                    <span className="px-2.5 py-1 bg-black/20 text-cream text-xs font-heading tracking-wide">{tour.difficulty}</span>
+                    <span className="px-2.5 py-1 bg-black/30 backdrop-blur-sm text-cream text-xs font-heading tracking-wide">
+                      {tour.duration}
+                    </span>
+                    <span className="px-2.5 py-1 bg-black/30 backdrop-blur-sm text-cream text-xs font-heading tracking-wide">
+                      {tour.difficulty}
+                    </span>
                   </div>
                 </div>
                 <div className="p-7">
                   <p className="text-brown/70 text-sm leading-relaxed mb-5">{tour.desc}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {tour.highlights.map((h) => (
-                      <span key={h} className="px-2.5 py-1 border border-gold/40 text-brown/60 text-xs font-heading">{h}</span>
+                      <span key={h} className="px-2.5 py-1 border border-gold/40 text-brown/60 text-xs font-heading">
+                        {h}
+                      </span>
                     ))}
                   </div>
                   <Link

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Philosopher:wght@400;700&display=swap');
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -54,5 +52,9 @@
 @layer utilities {
   .text-shadow-hero {
     text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .text-shadow-heavy {
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.4);
   }
 }

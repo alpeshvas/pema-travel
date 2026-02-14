@@ -22,9 +22,9 @@ const config: Config = {
         cloud: "#E8E2D4",
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', "serif"],
-        heading: ['"Philosopher"', "serif"],
-        body: ['"Noto Serif"', "serif"],
+        display: ["var(--font-display)", "serif"],
+        heading: ["var(--font-heading)", "serif"],
+        body: ["var(--font-body)", "serif"],
       },
       animation: {
         "cloud-float": "cloudFloat 60s linear infinite",
@@ -33,6 +33,8 @@ const config: Config = {
         "mandala-spin": "mandalaSpin 40s linear infinite",
         "fade-up": "fadeUp 0.8s ease forwards",
         "scroll-pulse": "scrollPulse 2s ease-in-out infinite",
+        "ken-burns": "kenBurns 25s ease-in-out infinite alternate",
+        "slide-down": "slideDown 0.3s ease-out forwards",
       },
       keyframes: {
         cloudFloat: {
@@ -58,6 +60,14 @@ const config: Config = {
         scrollPulse: {
           "0%, 100%": { transform: "scaleY(1)", opacity: "1" },
           "50%": { transform: "scaleY(0.5)", opacity: "0.5" },
+        },
+        kenBurns: {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.08)" },
+        },
+        slideDown: {
+          from: { opacity: "0", transform: "translateY(-8px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
       },
     },

@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: "Druk Yul",
-  tagline: "Land of the Thunder Dragon",
+  name: "Pema Travel",
+  tagline: "Bhutan — Land of the Thunder Dragon",
   description:
-    "Your gateway to the Kingdom of Bhutan. We craft meaningful journeys that honour the land, its people, and the spirit of Gross National Happiness.",
-  url: "https://drukyul.bt",
+    "Authentic Bhutan journeys with licensed guide Pema Wangchuk. Trek to Tiger's Nest, explore ancient dzongs, and discover the kingdom where Gross National Happiness reigns supreme.",
+  url: "https://pema.travel",
 };
 
 export const guide = {
@@ -41,6 +41,5 @@ export const navLinks = [
   { label: "Culture", href: "/#culture" },
   { label: "Tours", href: "/tours" },
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
