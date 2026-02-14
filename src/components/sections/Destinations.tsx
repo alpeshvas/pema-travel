@@ -39,7 +39,7 @@ export default function Destinations() {
           {destinations.map((d) => (
             <div
               key={d.name}
-              className={`relative overflow-hidden cursor-pointer group ${d.span ? "lg:row-span-2" : ""}`}
+              className={`relative overflow-hidden rounded-2xl cursor-pointer group ${d.span ? "lg:row-span-2" : ""}`}
               style={{ aspectRatio: d.span ? undefined : "4/3" }}
             >
               <div className={`w-full h-full ${d.span ? "min-h-[500px] lg:min-h-full" : "min-h-[300px]"} relative`}>
@@ -52,7 +52,7 @@ export default function Destinations() {
                 />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-dark/90 via-dark/50 to-transparent">
-                <span className="inline-block px-3 py-1 bg-crimson text-gold-light font-heading text-[0.7rem] tracking-widest uppercase mb-2">
+                <span className="inline-block px-3 py-1 bg-crimson text-gold-light font-heading text-[0.7rem] tracking-widest uppercase mb-2 rounded-full">
                   {d.tag}
                 </span>
                 <h3 className="font-display text-cream text-2xl mb-1">{d.name}</h3>

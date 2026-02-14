@@ -9,7 +9,7 @@ const stats = [
 
 export default function Intro() {
   return (
-    <section className="py-24 px-6 md:px-10 bg-cream text-center relative overflow-hidden">
+    <section className="py-24 px-6 md:px-10 bg-gradient-to-b from-cream to-warm-white text-center relative overflow-hidden">
       <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[400px] text-gold opacity-[0.06] select-none">☸</span>
 
       <RevealOnScroll>
@@ -23,7 +23,7 @@ export default function Intro() {
       <RevealOnScroll>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {stats.map((s) => (
-            <div key={s.label} className="p-7 border border-crimson/15 bg-white/60 hover:-translate-y-1 transition-transform">
+            <div key={s.label} className="p-7 rounded-2xl glass-card hover:-translate-y-1 transition-all hover:shadow-xl">
               <div className="font-display text-5xl text-crimson font-bold leading-none">{s.number}</div>
               <div className="font-heading text-brown text-sm tracking-wider mt-2">{s.label}</div>
             </div>

@@ -34,30 +34,46 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden lg:flex gap-9">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-cream font-heading text-sm tracking-wider uppercase relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all hover:after:w-full"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden lg:flex items-center gap-9">
+          <ul className="flex gap-9">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-cream font-heading text-sm tracking-wider uppercase relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all hover:after:w-full"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/contact"
+            className="px-6 py-2.5 bg-gold text-dark font-heading text-sm tracking-wider uppercase rounded-full hover:bg-gold-light transition-colors"
+          >
+            Plan Your Trip
+          </Link>
+        </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-        >
-          <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
-          <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
-          <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
-        </button>
+        {/* Mobile CTA + toggle */}
+        <div className="flex lg:hidden items-center gap-3">
+          <Link
+            href="/contact"
+            className="px-4 py-2 bg-gold text-dark font-heading text-xs tracking-wider uppercase rounded-full hover:bg-gold-light transition-colors"
+          >
+            Plan Trip
+          </Link>
+          <button
+            className="relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+          >
+            <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
+            <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+            <span className={`block w-6 h-[2px] bg-cream transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

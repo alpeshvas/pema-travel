@@ -20,8 +20,8 @@ export default function PracticalInfo() {
         <RevealOnScroll>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {items.map((item) => (
-              <div key={item.title} className="p-9 bg-white border border-crimson/[0.08] hover:border-gold hover:-translate-y-0.5 hover:shadow-lg transition-all">
-                <div className="text-3xl mb-4">{item.icon}</div>
+              <div key={item.title} className="p-9 bg-white rounded-2xl border border-crimson/[0.08] hover:border-gold hover:-translate-y-0.5 hover:shadow-lg transition-all">
+                <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-2xl mb-4">{item.icon}</div>
                 <h3 className="font-heading text-crimson text-lg mb-2">{item.title}</h3>
                 <p className="text-brown/70 leading-relaxed text-sm">{item.text}</p>
               </div>

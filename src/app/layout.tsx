@@ -85,12 +85,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${philosopher.variable} ${notoSerif.variable}`}>
       <body>
-        <BhutanBorder />
+        <BhutanBorderThin />
         <Navbar />
         <main>{children}</main>
-        <BhutanBorderThin />
         <Footer />
-        <BhutanBorder />
       </body>
     </html>
   );

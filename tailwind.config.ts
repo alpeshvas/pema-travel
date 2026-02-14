@@ -21,6 +21,10 @@ const config: Config = {
         sky: "#6BA3BE",
         cloud: "#E8E2D4",
       },
+      borderRadius: {
+        card: "20px",
+        lg: "16px",
+      },
       fontFamily: {
         display: ["var(--font-display)", "serif"],
         heading: ["var(--font-heading)", "serif"],
@@ -35,6 +39,7 @@ const config: Config = {
         "scroll-pulse": "scrollPulse 2s ease-in-out infinite",
         "ken-burns": "kenBurns 25s ease-in-out infinite alternate",
         "slide-down": "slideDown 0.3s ease-out forwards",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
         cloudFloat: {
@@ -68,6 +73,10 @@ const config: Config = {
         slideDown: {
           from: { opacity: "0", transform: "translateY(-8px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
         progressFill: {
           from: { width: "0%" },

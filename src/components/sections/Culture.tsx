@@ -25,7 +25,7 @@ export default function Culture() {
       <RevealOnScroll>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center max-w-6xl mx-auto">
           {/* Image */}
-          <div className="relative aspect-[3/4] overflow-hidden group">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl group">
             <Image
               src="https://images.unsplash.com/photo-1605904583059-7880dad25595?w=700&h=940&fit=crop&q=80"
               alt="Buddhist monks walking through a traditional Bhutanese dzong"
@@ -34,7 +34,6 @@ export default function Culture() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-crimson/30 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-2" style={{ background: "repeating-linear-gradient(90deg, #D4A843 0px, #D4A843 10px, transparent 10px, transparent 20px)" }} />
           </div>
 
           {/* Text */}
@@ -50,7 +49,7 @@ export default function Culture() {
             </p>
             <ul className="space-y-5">
               {cultureItems.map((item) => (
-                <li key={item.title} className="flex gap-4 p-4 border-l-[3px] border-crimson bg-white/50">
+                <li key={item.title} className="flex gap-4 p-5 rounded-xl border-l-[3px] border-crimson bg-white/50">
                   <span className="text-2xl flex-shrink-0">{item.icon}</span>
                   <div>
                     <h4 className="font-heading text-crimson mb-1">{item.title}</h4>

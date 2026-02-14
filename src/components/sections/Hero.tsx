@@ -54,7 +54,6 @@ export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [progressKey, setProgressKey] = useState(0);
   const [loaded, setLoaded] = useState<Set<number>>(new Set([0]));
-  const flagsRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval>>();
 
   const goTo = useCallback((index: number) => {
@@ -84,28 +83,6 @@ export default function Hero() {
     const next2 = (current + 2) % slides.length;
     setLoaded((prev) => new Set(prev).add(next).add(next2));
   }, [current]);
-
-  useEffect(() => {
-    if (flagsRef.current && flagsRef.current.children.length === 0) {
-      const colors = ["#E63946", "#457B9D", "#F1FAEE", "#2A9D8F", "#E9C46A"];
-      for (let i = 0; i < 30; i++) {
-        const flag = document.createElement("div");
-        Object.assign(flag.style, {
-          position: "absolute",
-          top: "2px",
-          left: `${i * 3.4}%`,
-          width: "24px",
-          height: "32px",
-          backgroundColor: colors[i % 5],
-          opacity: "0.35",
-          clipPath: "polygon(0 0, 100% 0, 95% 100%, 5% 100%)",
-          animation: `flagWave 3s ease-in-out infinite`,
-          animationDelay: `${Math.random() * 2}s`,
-        });
-        flagsRef.current.appendChild(flag);
-      }
-    }
-  }, []);
 
   return (
     <section className="h-screen min-h-[700px] relative flex items-start justify-center pt-[18vh] overflow-hidden">
@@ -142,9 +119,6 @@ export default function Hero() {
       {/* Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(26,18,9,0.6)_100%)] z-[1]" />
 
-      {/* Prayer flags */}
-      <div ref={flagsRef} className="absolute top-[12%] left-[5%] right-[5%] h-[2px] bg-white/10 -rotate-1 z-[2]" />
-
       {/* Content */}
       <div className="relative z-10 text-center px-5">
         <p
@@ -169,11 +143,18 @@ export default function Hero() {
         </p>
         <Link
           href="#destinations"
-          className="inline-flex items-center gap-3 px-10 py-4 bg-crimson text-cream font-heading text-sm tracking-widest uppercase border-2 border-gold hover:bg-gold hover:text-dark transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(212,168,67,0.3)] opacity-0 animate-fade-up"
+          className="inline-flex items-center gap-3 px-10 py-4 bg-crimson text-cream font-heading text-sm tracking-widest uppercase border-2 border-gold rounded-full hover:bg-gold hover:text-dark transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(212,168,67,0.3)] opacity-0 animate-fade-up"
           style={{ animationDelay: "1.4s" }}
         >
           Begin Your Journey →
         </Link>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-10 opacity-0 animate-fade-up" style={{ animationDelay: "2s" }}>
+        <div className="w-6 h-10 rounded-full border-2 border-cream/30 flex items-start justify-center p-1.5">
+          <div className="w-1 h-2.5 rounded-full bg-gold animate-scroll-pulse" />
+        </div>
       </div>
 
       {/* Slide progress indicators */}

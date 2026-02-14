@@ -28,10 +28,10 @@ export default function Experiences() {
             {experiences.map((exp) => (
               <div
                 key={exp.title}
-                className="p-9 border border-gold/20 bg-white/[0.03] relative overflow-hidden group hover:bg-gold/[0.06] hover:-translate-y-1 hover:border-gold/40 transition-all"
+                className="p-9 rounded-2xl border border-gold/20 bg-white/[0.03] relative overflow-hidden group hover:bg-gold/[0.06] hover:-translate-y-1 hover:border-gold/40 transition-all"
               >
-                <div className="absolute top-0 left-0 w-1 h-0 bg-gold group-hover:h-full transition-all duration-400" />
-                <span className="text-4xl block mb-5">{exp.icon}</span>
+                <div className="absolute top-0 left-0 w-1 h-0 bg-gold group-hover:h-full transition-all duration-400 rounded-r" />
+                <span className="w-14 h-14 rounded-full bg-gold/15 flex items-center justify-center text-3xl mb-5">{exp.icon}</span>
                 <h3 className="font-display text-gold-light text-xl mb-3">{exp.title}</h3>
                 <p className="text-cream/55 leading-relaxed text-sm">{exp.text}</p>
               </div>
