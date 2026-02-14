@@ -108,7 +108,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="h-screen min-h-[700px] relative flex items-center justify-center overflow-hidden">
+    <section className="h-screen min-h-[700px] relative flex items-start justify-center pt-[18vh] overflow-hidden">
       {/* Slideshow background */}
       {slides.map((slide, i) => (
         <div
