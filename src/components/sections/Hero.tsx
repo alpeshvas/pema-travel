@@ -1,11 +1,76 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+/*
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *  HERO SLIDESHOW IMAGES
+ *
+ *  To use your own tour photos:
+ *  1. Drop your images into /public/hero/
+ *  2. Replace the entries below, e.g.:
+ *     { src: "/hero/tigers-nest-group.jpg", alt: "Our group at Tiger's Nest" }
+ *     { src: "/hero/punakha-dzong-tour.jpg", alt: "Touring Punakha Dzong" }
+ *
+ *  Recommended: landscape photos, at least 1920px wide
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ */
+const slides = [
+  {
+    src: "/hero/phobjikha-valley.jpg",
+    alt: "Phobjikha Valley and Gangtey monastery landscape",
+  },
+  {
+    src: "/hero/jomolhari-mountain.jpg",
+    alt: "Mount Jomolhari with glacial lake in Bhutan",
+  },
+  {
+    src: "/hero/khamsum-chorten.jpg",
+    alt: "Khamsum Yulley Namgyal Chorten in Punakha Valley",
+  },
+  {
+    src: "/hero/paro-dzong.jpg",
+    alt: "Paro Rinpung Dzong fortress in the Paro Valley",
+  },
+  {
+    src: "/hero/bhutan-landscape.jpg",
+    alt: "Bhutan mountain landscape from a guided trek",
+  },
+];
+
+const SLIDE_DURATION = 6000;
+
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+  const [loaded, setLoaded] = useState<Set<number>>(new Set([0]));
   const flagsRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval>>();
+
+  const goTo = useCallback((index: number) => {
+    setCurrent(index);
+    // Reset the auto-advance timer
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, SLIDE_DURATION);
+  }, []);
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, SLIDE_DURATION);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  // Preload next image
+  useEffect(() => {
+    const next = (current + 1) % slides.length;
+    setLoaded((prev) => new Set(prev).add(next));
+  }, [current]);
 
   useEffect(() => {
     if (flagsRef.current && flagsRef.current.children.length === 0) {
@@ -31,25 +96,40 @@ export default function Hero() {
 
   return (
     <section className="h-screen min-h-[700px] relative flex items-center justify-center overflow-hidden">
-      {/* Background image with Ken Burns */}
-      <div className="absolute inset-0 animate-ken-burns">
-        <Image
-          src="https://images.unsplash.com/photo-1553856622-d1b352e9a211?w=1920&q=80&fit=crop"
-          alt="Tiger's Nest Monastery perched on a cliff in Bhutan"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-      </div>
+      {/* Slideshow background */}
+      {slides.map((slide, i) => (
+        <div
+          key={slide.src}
+          className="absolute inset-0 transition-opacity duration-[1500ms] ease-in-out"
+          style={{ opacity: current === i ? 1 : 0 }}
+        >
+          {(i === 0 || loaded.has(i)) && (
+            <div
+              className="absolute inset-0"
+              style={{
+                animation: current === i ? `kenBurns ${SLIDE_DURATION + 1500}ms ease-in-out forwards` : "none",
+              }}
+            >
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                priority={i === 0}
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+          )}
+        </div>
+      ))}
 
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/40 to-dark/80" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/40 to-dark/80 z-[1]" />
 
-      {/* Atmospheric vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(26,18,9,0.6)_100%)]" />
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(26,18,9,0.6)_100%)] z-[1]" />
 
-      {/* Prayer flags across top */}
+      {/* Prayer flags */}
       <div ref={flagsRef} className="absolute top-[12%] left-[5%] right-[5%] h-[2px] bg-white/10 -rotate-1 z-[2]" />
 
       {/* Content */}
@@ -83,13 +163,29 @@ export default function Hero() {
         </Link>
       </div>
 
+      {/* Slide indicators */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 flex gap-2.5 opacity-0 animate-fade-up" style={{ animationDelay: "1.7s" }}>
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-[3px] rounded-full transition-all duration-500 ${
+              current === i
+                ? "w-8 bg-gold"
+                : "w-3 bg-cream/40 hover:bg-cream/60"
+            }`}
+          />
+        ))}
+      </div>
+
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-gold-light font-heading text-xs tracking-[3px] uppercase opacity-0 animate-fade-up"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-gold-light font-heading text-xs tracking-[3px] uppercase opacity-0 animate-fade-up"
         style={{ animationDelay: "1.7s" }}
       >
         <span>Explore</span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-gold to-transparent animate-scroll-pulse" />
+        <div className="w-[1px] h-8 bg-gradient-to-b from-gold to-transparent animate-scroll-pulse" />
       </div>
     </section>
   );
