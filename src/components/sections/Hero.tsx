@@ -177,35 +177,39 @@ export default function Hero() {
       </div>
 
       {/* Slide progress indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3 opacity-0 animate-fade-up" style={{ animationDelay: "1.7s" }}>
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className="group relative h-5 flex items-center"
-          >
-            {/* Track */}
-            <div className={`h-[2px] rounded-full transition-all duration-300 ${
-              current === i ? "w-10 bg-cream/20" : "w-5 bg-cream/15 hover:bg-cream/30"
-            }`}>
-              {/* Fill — animates over SLIDE_DURATION for the active slide */}
-              {current === i && (
-                <div
-                  key={progressKey}
-                  className="h-full rounded-full bg-gold"
-                  style={{
-                    animation: `progressFill ${SLIDE_DURATION}ms linear forwards`,
-                  }}
-                />
-              )}
-              {/* Past slides show full fill */}
-              {i < current && (
-                <div className="h-full w-full rounded-full bg-cream/40" />
-              )}
-            </div>
-          </button>
-        ))}
+      <div className="absolute bottom-10 left-0 right-0 z-10 flex justify-center opacity-0 animate-fade-up" style={{ animationDelay: "1.7s" }}>
+        <div className="flex items-center gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className="group relative py-3 px-1 flex items-center cursor-pointer"
+            >
+              {/* Track — fixed width for all, prevents layout shift */}
+              <div className="relative w-8 h-[2px] rounded-full overflow-hidden bg-cream/20">
+                {/* Fill — animates over SLIDE_DURATION for the active slide */}
+                {current === i && (
+                  <div
+                    key={progressKey}
+                    className="absolute inset-y-0 left-0 rounded-full bg-gold"
+                    style={{
+                      animation: `progressFill ${SLIDE_DURATION}ms linear forwards`,
+                    }}
+                  />
+                )}
+                {/* Past slides show full fill */}
+                {i < current && (
+                  <div className="absolute inset-0 rounded-full bg-cream/50" />
+                )}
+                {/* Hover highlight for inactive future slides */}
+                {i > current && (
+                  <div className="absolute inset-0 rounded-full bg-transparent group-hover:bg-cream/30 transition-colors" />
+                )}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
